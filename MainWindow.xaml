@@ -1,0 +1,40 @@
+﻿<Window x:Class="LB2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:LB2"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        Title="Task Manager" Height="618" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <!-- DataGrid for displaying tasks -->
+        <DataGrid x:Name="tasksDataGrid" Grid.Row="0" AutoGenerateColumns="False"
+                  SelectionMode="Single" SelectionChanged="TasksDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="2*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Priority" Binding="{Binding Priority}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}" Width="*" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Controls for adding/updating tasks -->
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10">
+            <TextBox x:Name="titleTextBox" Margin="0,5" />
+            <TextBox x:Name="descriptionTextBox" Margin="0,5"/>
+            <ComboBox x:Name="priorityComboBox" Margin="0,5"/>
+            <DatePicker x:Name="startDatePicker" Margin="0,5" SelectedDate="{x:Static System:DateTime.Now}" />
+            <DatePicker x:Name="endDatePicker" Margin="0,5" SelectedDate="{x:Static System:DateTime.Now}" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                <Button x:Name="addButton" Content="Add Task" Click="AddButton_Click" Width="100" Margin="5"/>
+                <Button x:Name="updateButton" Content="Update Task" Click="UpdateButton_Click" Width="100" Margin="5"/>
+                <Button x:Name="deleteButton" Content="Delete Task" Click="DeleteButton_Click" Width="100" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
